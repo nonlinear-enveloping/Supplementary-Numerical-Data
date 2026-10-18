@@ -1,11 +1,35 @@
 # Supplementary Numerical Data for  
 # "Nonlinear Enveloping for Membership-Function-Dependent Synthesis of T-S Fuzzy Systems"
 
+<!-- BEGIN CURRENT CONFIGURATION -->
+## Current data configuration
+
+| Quantity | Value |
+|---|---:|
+| Export date | 2026-10-18 |
+| Premise anchor `z0` | (0.8, 0.2) |
+| Membership anchor `h0` | `[0 0 1 0]^T` |
+| Envelope-width parameter `delta` | 0.05 |
+| Polynomial order `eta` | 5 |
+| Fitting samples | 400 |
+| Augmented components | 16 |
+| Monomials per polynomial | 21 |
+| Independently estimated coefficients | 630 |
+| Local sub-domains | 196 |
+| Certification boxes per sub-domain | 6 x 6 |
+| Lifted vertices per sub-domain | 1024 |
+| Maximum absolute fitting error | 2.252379234304e-03 |
+| Maximum absolute certified residual bound | 7.031843234100e-02 |
+
+The files are exported from the current `m/usv_data.mat`, `m/fitted_usv_data.mat`, and `m/usv_error_bounds.mat`. The anchor and delta are also recorded in `fitting_summary.csv` and `fitted_coefficients.mat`.
+
+<!-- END CURRENT CONFIGURATION -->
+
 ## 1. Purpose
 
 This repository provides the supplementary numerical data used to reproduce the polynomial representation and robust \(H_\infty\) controller synthesis for the unmanned surface vehicle (USV) example presented in the manuscript.
 
-The data correspond to the theoretical procedure developed in Sections III-A–III-E and the USV example in Section IV-A of the manuscript. In particular, the repository provides:
+The data correspond to the theoretical procedure developed in Section III and the USV example in Section V of the manuscript. In particular, the repository provides:
 
 - the sampled augmented upper and lower envelope functions;
 - the complete fifth-order polynomial coefficients;
@@ -120,7 +144,7 @@ d_{22}=66.1440,\qquad
 d_{33}=10.1492.
 \]
 
-The matrices \(A_i\), \(B_i\), \(E_i\), \(C_i\), and the uncertainty matrices are constructed according to Section IV-A of the manuscript. A \(5\%\) perturbation of the identified hydrodynamic parameters is considered in the robust \(H_\infty\) synthesis.
+The model matrices are specified in the USV example of the manuscript. The files in this repository are exported from the current nominal USV calculations in `m`. The membership-function samples, polynomial coefficients, and residual bounds can also be used with the uncertainty matrices of the robust case; the model and uncertainty matrices are not included in this numerical-data package.
 
 ---
 
@@ -460,7 +484,7 @@ where the first term is handled through the finite lifted vertices and the secon
 
 ## 8. Step 6: Robust \(H_\infty\) LMI Synthesis
 
-The supplied polynomial coefficients and residual bounds are used directly in the robust \(H_\infty\) endpoint LMIs of Theorem 2.
+The supplied polynomial coefficients and residual bounds can be substituted into the endpoint LMIs of Theorem 2, using the nominal or uncertain USV model as appropriate. The reference performance value below corresponds to the current nominal USV calculation.
 
 For every
 
@@ -490,7 +514,7 @@ lifted vertices, and both endpoint families
 
 3. construct the robust local matrix
    \(\Theta_{ij}\)
-   using the USV model and the \(5\%\) parameter-uncertainty setting in Section IV-A; and
+   using the chosen USV model, with the corresponding uncertainty matrices when evaluating the robust case; and
 
 4. substitute these quantities into Eqs. (56)–(60) of Theorem 2.
 
@@ -516,7 +540,7 @@ For the fifth-order representation with \(\delta=0.05\), the reported minimum pe
 \gamma_{\min}=0.0020644.
 \]
 
-The resulting feedback gains should reproduce the values reported in Section IV-B of the manuscript.
+This reference value is for the nominal model comparison in the manuscript. The feedback gains and solver output are not included in this numerical-data package.
 
 ---
 
@@ -541,7 +565,7 @@ The following values may be used to verify that the supplementary data have been
 | Envelope-width parameter \(\delta\) | 0.05 |
 | Maximum fitting error | \(2.252379\times10^{-3}\) |
 | Maximum certified residual bound | \(7.03184323\times10^{-2}\) |
-| Minimum \(H_\infty\) index | \(0.0020644\) |
+| Reference nominal \(H_\infty\) index | \(0.0020644\) |
 
 Small numerical differences may occur because of solver tolerances and numerical precision.
 
